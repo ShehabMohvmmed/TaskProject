@@ -12,10 +12,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val button = findViewById<Button>(R.id.button)
-        val editText = findViewById<EditText>(R.id.editText)
-        button.setOnClickListener {
-            Log.i("editText Text:","editText Text: ${editText.text}")
-        }
+
     }
 }
