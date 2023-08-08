@@ -28,21 +28,21 @@ class SecondActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
 
         val posts = mutableListOf(
-            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight"),
-            Post("Emad", "2023-08-05", "what a pretty view"),
-            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight"),
-            Post("Emad", "2023-08-05", "what a pretty view"),
-            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight"),
-            Post("Emad", "2023-08-05", "what a pretty view"),
-            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight"),
-            Post("Emad", "2023-08-05", "what a pretty view"),
-            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight"),
-            Post("Emad", "2023-08-05", "what a pretty view"),
-            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight"),
+            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight","https://upload.wikimedia.org/wikipedia/commons/f/f6/Ryan_Gosling_in_2018.jpg"),
+            Post("Emad", "2023-08-05", "what a pretty view","https://upload.wikimedia.org/wikipedia/commons/f/fa/Leonardo_DiCaprio_2017.jpg"),
+            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight","https://upload.wikimedia.org/wikipedia/commons/f/f6/Ryan_Gosling_in_2018.jpg"),
+            Post("Emad", "2023-08-05", "what a pretty view","https://upload.wikimedia.org/wikipedia/commons/f/fa/Leonardo_DiCaprio_2017.jpg"),
+            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight","https://upload.wikimedia.org/wikipedia/commons/f/f6/Ryan_Gosling_in_2018.jpg"),
+            Post("Emad", "2023-08-05", "what a pretty view","https://upload.wikimedia.org/wikipedia/commons/f/fa/Leonardo_DiCaprio_2017.jpg"),
+            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight","https://upload.wikimedia.org/wikipedia/commons/f/f6/Ryan_Gosling_in_2018.jpg"),
+            Post("Emad", "2023-08-05", "what a pretty view","https://upload.wikimedia.org/wikipedia/commons/f/fa/Leonardo_DiCaprio_2017.jpg"),
+            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight","https://upload.wikimedia.org/wikipedia/commons/f/f6/Ryan_Gosling_in_2018.jpg"),
+            Post("Emad", "2023-08-05", "what a pretty view","https://upload.wikimedia.org/wikipedia/commons/f/fa/Leonardo_DiCaprio_2017.jpg"),
+            Post("Ahmed", "2023-08-06", "arsenal gonna win tonight","https://upload.wikimedia.org/wikipedia/commons/f/f6/Ryan_Gosling_in_2018.jpg"),
 
         )
 
-        val adapter = PostAdapter(posts)
+        val adapter = PostAdapter(this,posts)
         recyclerView.adapter = adapter
     }
 
