@@ -2,24 +2,34 @@ package com
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.PrefsUtil.Companion.initPrefs
+import com.PrefsUtil.Companion.isLoggedIn
+import com.PrefsUtil.Companion.setPrefs
 import com.cheesecake.taskproject.R
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.view.Menu
-import android.view.MenuItem
 
 class MainActivity : AppCompatActivity() {
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initPrefs(this)
+
+        if (isLoggedIn!!) {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+
+        Log.i( "onCreate: ", isLoggedIn.toString())
+
         val etUsername: EditText = findViewById(R.id.et_username)
         val etPassword: EditText = findViewById(R.id.etPassword)
         val cbFootball: CheckBox = findViewById(R.id.cbFootball)
@@ -56,6 +66,10 @@ class MainActivity : AppCompatActivity() {
                 else -> "unknown"
             }
 
+            setPrefs(username,password)
+            isLoggedIn = true
+            Log.i( "onCreate: ", isLoggedIn.toString())
+
             val intent = Intent(this, SecondActivity::class.java)
             intent.putExtra(EXTRA_USERNAME, username)
             intent.putExtra(EXTRA_PASSWORD, password)
@@ -64,37 +78,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_item_second_activity -> openSecondActivity()
-            R.id.menu_item_exit -> showExitConfirmationDialog()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun openSecondActivity() {
-        val intent = Intent(this, SecondActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun showExitConfirmationDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Exit Application")
-        builder.setMessage("Are you sure you want to exit?")
-        builder.setPositiveButton("Yes") { _: DialogInterface, _: Int ->
-            finish()
-        }
-        builder.setNegativeButton("No") { dialog: DialogInterface, _: Int ->
-            dialog.dismiss()
-        }
-        val dialog = builder.create()
-        dialog.show()
-    }
     companion object {
         const val EXTRA_USERNAME = "extra_username"
         const val EXTRA_PASSWORD = "extra_password"
