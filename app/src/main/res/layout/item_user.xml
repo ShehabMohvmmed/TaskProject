@@ -15,17 +15,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/openButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open"
-        app:layout_constraintBottom_toBottomOf="@+id/profileImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profileImage" />
 
     <TextView
-        android:id="@+id/textViewUsername"
+        android:id="@+id/textViewfirstname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -34,6 +26,18 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/profileImage"
         app:layout_constraintTop_toTopOf="@+id/profileImage" />
+
+    <TextView
+        android:id="@+id/textViewlastname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textSize="18sp"
+        android:layout_marginStart="8dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewfirstname"
+        app:layout_constraintStart_toEndOf="@+id/textViewfirstname"
+        app:layout_constraintTop_toTopOf="@+id/textViewfirstname" />
 
     <View
         android:id="@+id/line"
@@ -46,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <TextView
-        android:id="@+id/textViewDate"
+        android:id="@+id/textViewId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -56,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/line" />
 
     <TextView
-        android:id="@+id/textViewText"
+        android:id="@+id/textViewEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -64,5 +68,5 @@
         android:text="Text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewId" />
 </androidx.constraintlayout.widget.ConstraintLayout>
