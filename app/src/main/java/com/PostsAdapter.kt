@@ -1,14 +1,18 @@
 package com
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.MainActivity.Companion.POST_ID
 import com.cheesecake.taskproject.R
 import com.remote.model.Post
 
-class PostsAdapter(private val posts: List<Post>) :
+class PostsAdapter(private val context: Context,private val posts: List<Post>) :
     RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -39,7 +43,9 @@ class PostsAdapter(private val posts: List<Post>) :
             titleTextView.text = post.title
             bodyTextView.text = post.body
             bodyTextView.setOnClickListener {
-
+                val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra(POST_ID, idTextView.text.toString().toInt())
+                startActivity(intent)
             }
         }
 

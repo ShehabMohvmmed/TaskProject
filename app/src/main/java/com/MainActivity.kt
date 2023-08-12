@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             val api = RetrofitClient.apiService
             if (api.getPosts().isSuccessful) {
                 val posts = api.getPosts().body() ?: emptyList()
-                val adapter = PostsAdapter(posts)
+                val adapter = PostsAdapter(this@MainActivity,posts)
                 recyclerView.adapter = adapter
 
                 buttonGet.setOnClickListener {
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                             if (api.getPost(editText.text.toString().toInt()).isSuccessful) {
                                 val posts =
                                     listOf(api.getPost(editText.text.toString().toInt()).body()!!)
-                                val adapter = PostsAdapter(posts)
+                                val adapter = PostsAdapter(this@MainActivity,posts)
                                 recyclerView.adapter = adapter
                             }
                             Log.i("onCreate: ", posts.toString())
@@ -52,5 +52,9 @@ class MainActivity : AppCompatActivity() {
                 throw Throwable("no data found")
             }
         }
+    }
+
+    companion object {
+        const val POST_ID = "post_id"
     }
 }
