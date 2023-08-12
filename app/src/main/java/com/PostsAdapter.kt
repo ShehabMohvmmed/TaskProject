@@ -2,12 +2,13 @@ package com
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.MainActivity.Companion.POST_ID
+import com.SecondActivity.Companion.POST_ID
 import com.cheesecake.taskproject.R
 import com.remote.model.Post
 
@@ -30,7 +31,7 @@ class PostsAdapter(private val context: Context,private val posts: List<Post>) :
     }
 
     inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val userIdTextView: TextView = itemView.findViewById(R.id.textViewUserId)
+        private val userIdTextView: TextView = itemView.findViewById(R.id.textViewId)
         private val idTextView: TextView = itemView.findViewById(R.id.textViewPostId)
         private val titleTextView: TextView = itemView.findViewById(R.id.textViewEmail)
         private val bodyTextView: TextView = itemView.findViewById(R.id.textViewBody)
@@ -41,10 +42,11 @@ class PostsAdapter(private val context: Context,private val posts: List<Post>) :
             idTextView.text = post.id.toString()
             titleTextView.text = post.title
             bodyTextView.text = post.body
-            bodyTextView.setOnClickListener {
-                val intent = Intent(context, MainActivity::class.java)
-                intent.putExtra(POST_ID, idTextView.text.toString().toInt())
+            buttonComments.setOnClickListener {
+                val intent = Intent(context, ThirdActivity::class.java)
+                intent.putExtra(POST_ID, idTextView.text.toString())
                 context.startActivity(intent)
+                Log.i( "bind: ","snjosvnvnojndvjonojv")
             }
         }
 

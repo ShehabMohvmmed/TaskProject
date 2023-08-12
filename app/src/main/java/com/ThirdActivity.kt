@@ -2,10 +2,10 @@ package com
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.SecondActivity.Companion.POST_ID
 import com.cheesecake.taskproject.R
 import com.remote.RetrofitClient
 import kotlinx.coroutines.launch
@@ -19,14 +19,15 @@ class ThirdActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerview_comment)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+        val postIdString = intent.getStringExtra(POST_ID)
 
         lifecycleScope.launch {
             val api = RetrofitClient.apiService
-            if (api.getPosts().isSuccessful) {
-                val posts = api.getPosts().body() ?: emptyList()
-                val adapter = PostsAdapter(this@MainActivity,posts)
+            val request = api.getPostsComments(postIdString!!.toInt())
+            if (request.isSuccessful) {
+                val comments = request.body() ?: emptyList()
+                val adapter = CommentAdapter(this@ThirdActivity,comments)
                 recyclerView.adapter = adapter
-
             } else {
                 throw Throwable("no data found")
             }

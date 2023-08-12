@@ -29,7 +29,7 @@ class CommentAdapter(private val context: Context,private val comments: List<Com
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.textViewName)
-        private val idTextView: TextView = itemView.findViewById(R.id.textViewPostId)
+        private val idTextView: TextView = itemView.findViewById(R.id.textViewId)
         private val postIdTextView: TextView = itemView.findViewById(R.id.textViewPostId)
         private val emailTextView: TextView = itemView.findViewById(R.id.textViewEmail)
         private val bodyTextView: TextView = itemView.findViewById(R.id.textViewBody)
