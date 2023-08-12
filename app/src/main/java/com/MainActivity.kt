@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                         lifecycleScope.launch {
                             if (api.getPost(editText.text.toString().toInt()).isSuccessful) {
                                 val posts =
-                                    listOf(api.getPost(editText.text.toString().toInt()).body()!!)
+                                  api.getPost(editText.text.toString().toInt()).body() ?: emptyList()
                                 val adapter = PostsAdapter(this@MainActivity,posts)
                                 recyclerView.adapter = adapter
                             }

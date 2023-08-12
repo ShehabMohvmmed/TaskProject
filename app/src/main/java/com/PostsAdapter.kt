@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.MainActivity.Companion.POST_ID
 import com.cheesecake.taskproject.R
@@ -32,10 +31,10 @@ class PostsAdapter(private val context: Context,private val posts: List<Post>) :
 
     inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val userIdTextView: TextView = itemView.findViewById(R.id.textViewUserId)
-        private val idTextView: TextView = itemView.findViewById(R.id.textViewId)
-        private val titleTextView: TextView = itemView.findViewById(R.id.textViewTitle)
+        private val idTextView: TextView = itemView.findViewById(R.id.textViewPostId)
+        private val titleTextView: TextView = itemView.findViewById(R.id.textViewEmail)
         private val bodyTextView: TextView = itemView.findViewById(R.id.textViewBody)
-        private val buttonComments: TextView = itemView.findViewById(R.id.btn_comments)
+        private val buttonComments: TextView = itemView.findViewById(R.id.textViewName)
 
         fun bind(post: Post) {
             userIdTextView.text = post.userId.toString()
@@ -45,7 +44,7 @@ class PostsAdapter(private val context: Context,private val posts: List<Post>) :
             bodyTextView.setOnClickListener {
                 val intent = Intent(context, MainActivity::class.java)
                 intent.putExtra(POST_ID, idTextView.text.toString().toInt())
-                startActivity(intent)
+                context.startActivity(intent)
             }
         }
 

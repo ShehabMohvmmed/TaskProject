@@ -6,12 +6,15 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <Button
+    <TextView
         android:id="@+id/textViewName"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Comments"
+        android:text="name"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:backgroundTint="@color/design_default_color_background"
         app:layout_constraintBottom_toTopOf="@+id/line"
         app:layout_constraintEnd_toStartOf="@+id/textViewUserId"
