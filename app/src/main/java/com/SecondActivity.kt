@@ -38,7 +38,7 @@ class SecondActivity : AppCompatActivity() {
                 buttonGet.setOnClickListener {
                     if (editText.text.isNotEmpty()) {
                         lifecycleScope.launch {
-                            val request = api.getPost(editText.text.toString().toInt())
+                            val request = api.getPostsByUserId(editText.text.toString().toInt())
                             if (request.isSuccessful) {
                                 val posts = request.body() ?: emptyList()
                                 val adapter = PostsAdapter(this@SecondActivity,posts)
