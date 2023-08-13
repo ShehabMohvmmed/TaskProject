@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ApiService {
+interface PostsApiService {
     @GET("posts")
     suspend fun getPosts(): Response<List<Post>>
 

@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cheesecake.taskproject.R
-import com.remote.RetrofitClient
+import com.remote.PostsRetrofitClient
 import kotlinx.coroutines.launch
 
 class SecondActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class SecondActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
 
         lifecycleScope.launch {
-            val api = RetrofitClient.apiService
+            val api = PostsRetrofitClient.apiService
             if (api.getPosts().isSuccessful) {
                 val posts = api.getPosts().body() ?: emptyList()
                 val adapter = PostsAdapter(this@SecondActivity,posts)

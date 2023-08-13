@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.SecondActivity.Companion.POST_ID
 import com.cheesecake.taskproject.R
-import com.remote.RetrofitClient
+import com.remote.PostsRetrofitClient
 import kotlinx.coroutines.launch
 
 class ThirdActivity : AppCompatActivity() {
@@ -22,7 +22,7 @@ class ThirdActivity : AppCompatActivity() {
         val postIdString = intent.getStringExtra(POST_ID)
 
         lifecycleScope.launch {
-            val api = RetrofitClient.apiService
+            val api = PostsRetrofitClient.apiService
             val request = api.getPostsComments(postIdString!!.toInt())
             if (request.isSuccessful) {
                 val comments = request.body() ?: emptyList()
