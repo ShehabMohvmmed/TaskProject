@@ -1,7 +1,7 @@
 package com
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +18,6 @@ class SecondActivity : AppCompatActivity() {
     private lateinit var buttonGet: Button
     private lateinit var editText: EditText
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
@@ -32,6 +31,7 @@ class SecondActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             if (postApiService.getPosts().isSuccessful) {
+                Log.i( "bsbdbfbsbfdsbdfbfdssb: ",postApiService.getPosts().body().toString() )
                 val posts = postApiService.getPosts().body() ?: emptyList()
                 val adapter = PostsAdapter(this@SecondActivity,posts)
                 recyclerView.adapter = adapter

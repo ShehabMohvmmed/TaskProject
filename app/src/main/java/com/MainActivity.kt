@@ -49,8 +49,4 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    companion object {
-        private const val BASE_URL = "https://dummyjson.com/"
-    }
-
 }
