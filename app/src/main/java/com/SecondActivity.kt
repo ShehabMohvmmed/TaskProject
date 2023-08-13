@@ -2,7 +2,6 @@ package com
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cheesecake.taskproject.R
-import com.remote.PostsRetrofitClient
+import com.remote.PostsApiService
+import com.remote.RetrofitClient
 import kotlinx.coroutines.launch
 
 class SecondActivity : AppCompatActivity() {
@@ -27,18 +27,19 @@ class SecondActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerview)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+        val postApiService = RetrofitClient.getInstance("https://jsonplaceholder.typicode.com/").create(
+            PostsApiService::class.java)
 
         lifecycleScope.launch {
-            val api = PostsRetrofitClient.apiService
-            if (api.getPosts().isSuccessful) {
-                val posts = api.getPosts().body() ?: emptyList()
+            if (postApiService.getPosts().isSuccessful) {
+                val posts = postApiService.getPosts().body() ?: emptyList()
                 val adapter = PostsAdapter(this@SecondActivity,posts)
                 recyclerView.adapter = adapter
 
                 buttonGet.setOnClickListener {
                     if (editText.text.isNotEmpty()) {
                         lifecycleScope.launch {
-                            val request = api.getPostsByUserId(editText.text.toString().toInt())
+                            val request = postApiService.getPostsByUserId(editText.text.toString().toInt())
                             if (request.isSuccessful) {
                                 val posts = request.body() ?: emptyList()
                                 val adapter = PostsAdapter(this@SecondActivity,posts)

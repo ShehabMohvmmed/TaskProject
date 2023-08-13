@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.SecondActivity.Companion.POST_ID
 import com.cheesecake.taskproject.R
-import com.remote.PostsRetrofitClient
+import com.remote.PostsApiService
+import com.remote.RetrofitClient
 import kotlinx.coroutines.launch
 
 class ThirdActivity : AppCompatActivity() {
@@ -20,10 +21,11 @@ class ThirdActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
         val postIdString = intent.getStringExtra(POST_ID)
+        val postApiService = RetrofitClient.getInstance("https://jsonplaceholder.typicode.com/").create(
+            PostsApiService::class.java)
 
         lifecycleScope.launch {
-            val api = PostsRetrofitClient.apiService
-            val request = api.getPostsComments(postIdString!!.toInt())
+            val request = postApiService.getPostsComments(postIdString!!.toInt())
             if (request.isSuccessful) {
                 val comments = request.body() ?: emptyList()
                 val adapter = CommentAdapter(this@ThirdActivity,comments)

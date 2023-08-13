@@ -1,5 +1,6 @@
 package com.remote
 
+import com.remote.model.LoginRequestBody
 import com.remote.model.User
 import retrofit2.Response
 import retrofit2.http.Body
@@ -10,5 +11,5 @@ interface AuthApiService {
 
     @Headers("Content-Type: application/json")
     @POST("auth/login")
-    suspend fun login(@Body requestBody: Map<String,String>): Response<User>
+    suspend fun login(@Body requestBody: LoginRequestBody): Response<User>
 }
