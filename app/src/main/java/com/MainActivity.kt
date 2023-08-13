@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 val request = apiService.login(requestBody)
                 if (request.isSuccessful) {
-                    moveToSecondScreen(username, password)
+                    moveToSecondScreen()
                 } else {
                     val errorResponse = request.errorBody()?.string()
                     val errorMessage = JSONObject(errorResponse ?: "").getString("message")
@@ -41,10 +41,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun moveToSecondScreen(username: String, password: String) {
+    private fun moveToSecondScreen() {
         val intent = Intent(this, SecondActivity::class.java)
-        intent.putExtra(EXTRA_USERNAME, username)
-        intent.putExtra(EXTRA_PASSWORD, password)
         startActivity(intent)
     }
 
@@ -52,8 +50,4 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    companion object {
-        const val EXTRA_USERNAME = "extra_username"
-        const val EXTRA_PASSWORD = "extra_password"
-    }
 }
