@@ -21,7 +21,7 @@ class SecondActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_second)
         editText = findViewById(R.id.edtText_Id)
         buttonGet = findViewById(R.id.btn_get)
         recyclerView = findViewById(R.id.recyclerview)
@@ -44,7 +44,6 @@ class SecondActivity : AppCompatActivity() {
                                 val adapter = PostsAdapter(this@SecondActivity,posts)
                                 recyclerView.adapter = adapter
                             }
-                            Log.i("onCreate: ", posts.toString())
                         }
                     }
                 }
