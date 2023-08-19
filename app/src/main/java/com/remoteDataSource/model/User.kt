@@ -1,4 +1,4 @@
-package com.remote.model
+package com.remoteDataSource.model
 
 data class User(
     val email: String,

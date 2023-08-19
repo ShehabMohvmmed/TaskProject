@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.SecondActivity.Companion.POST_ID
 import com.cheesecake.taskproject.R
-import com.remote.model.Post
+import com.remoteDataSource.model.Post
 
 class PostsAdapter(private val context: Context,private val posts: List<Post>) :
     RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {

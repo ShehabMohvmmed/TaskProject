@@ -1,4 +1,4 @@
-package com.remote.model
+package com.remoteDataSource.model
 
 
 data class Comment(

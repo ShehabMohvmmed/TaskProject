@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.SecondActivity.Companion.POST_ID
 import com.cheesecake.taskproject.R
-import com.remote.PostsApiService
-import com.remote.RetrofitClient
+import com.remoteDataSource.PostsApiService
+import com.remoteDataSource.RetrofitClient
 import kotlinx.coroutines.launch
 
 class ThirdActivity : AppCompatActivity() {

@@ -1,19 +1,22 @@
 package com
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cheesecake.taskproject.R
-import com.remote.PostsApiService
-import com.remote.RetrofitClient
+import com.viewModel.SecondViewModel
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class SecondActivity : AppCompatActivity() {
+    private lateinit var viewModel: SecondViewModel
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var buttonGet: Button
     private lateinit var editText: EditText
@@ -21,35 +24,32 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
+        viewModel = ViewModelProvider(this)[SecondViewModel::class.java]
+
         editText = findViewById(R.id.edtText_Id)
         buttonGet = findViewById(R.id.btn_get)
         recyclerView = findViewById(R.id.recyclerview)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        val postApiService = RetrofitClient.getInstance("https://jsonplaceholder.typicode.com/").create(
-            PostsApiService::class.java)
+
 
         lifecycleScope.launch {
-            if (postApiService.getPosts().isSuccessful) {
-                Log.i( "bsbdbfbsbfdsbdfbfdssb: ",postApiService.getPosts().body().toString() )
-                val posts = postApiService.getPosts().body() ?: emptyList()
-                val adapter = PostsAdapter(this@SecondActivity,posts)
+            try {
+                val posts = viewModel.getPosts()
+                var adapter = PostsAdapter(this@SecondActivity, posts)
                 recyclerView.adapter = adapter
 
                 buttonGet.setOnClickListener {
                     if (editText.text.isNotEmpty()) {
                         lifecycleScope.launch {
-                            val request = postApiService.getPostsByUserId(editText.text.toString().toInt())
-                            if (request.isSuccessful) {
-                                val posts = request.body() ?: emptyList()
-                                val adapter = PostsAdapter(this@SecondActivity,posts)
-                                recyclerView.adapter = adapter
-                            }
+                            val posts = viewModel.getPostsByUserId(editText.text.toString().toInt())
+                            adapter = PostsAdapter(this@SecondActivity, posts)
+                            recyclerView.adapter = adapter
                         }
                     }
                 }
-            } else {
-                throw Throwable("no data found")
+            } catch (e: Exception) {
+                Toast.makeText(this@SecondActivity, e.message.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }

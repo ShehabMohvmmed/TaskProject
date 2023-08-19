@@ -1,4 +1,4 @@
-package com.remote.model
+package com.remoteDataSource.model
 
 import com.google.gson.annotations.SerializedName
 

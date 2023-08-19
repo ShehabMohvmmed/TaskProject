@@ -1,7 +1,7 @@
-package com.remote
+package com.remoteDataSource
 
-import com.remote.model.Comment
-import com.remote.model.Post
+import com.remoteDataSource.model.Comment
+import com.remoteDataSource.model.Post
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
